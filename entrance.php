@@ -32,9 +32,9 @@ $products = $productsRepository->getAll();
 </form>
 <table>
     <tr>
-        <th>Артикул</th>
+        <th>ID</th>
         <th>Название</th>
-        <th>Цена</th>
+        <th>Количество</th>
         <th>Действие</th>
     </tr>
     <?php foreach ($entrance as $item): ?>
