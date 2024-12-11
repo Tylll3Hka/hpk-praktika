@@ -22,13 +22,13 @@ $products = $productsRepository->getAll();
 <form method="post" action="action/entrance/create.php">
     <input type="number" name="count" placeholder="Количество">
     <label>
-        <select name="productId" style="min-width: 180px">
+        <select name="productId" style="min-width: 180px" id="selectProduct">
             <?php foreach ($products as $item): ?>
                 <option value="<?= $item["id"] ?>"><?= $item["title"] ?></option>
             <?php endforeach;?>
         </select>
     </label>
-    <button type="submit">Создать</button>
+    <button id="create" type="submit">Создать</button>
 </form>
 <table>
     <tr>

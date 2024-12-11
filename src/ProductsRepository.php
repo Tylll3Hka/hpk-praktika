@@ -45,4 +45,9 @@ class ProductsRepository
     {
         return $this->pdo->query("UPDATE product SET title = '$title', price = '$price' WHERE id = $id");
     }
+
+    public function getLastProduct()
+    {
+        return $this->pdo->query("SELECT id FROM product ORDER BY id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+    }
 }

@@ -1,5 +1,5 @@
 <?php
 use Dotenv\Dotenv;
 
-$dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
+$dotenv = Dotenv::createImmutable(__DIR__ . '\\..\\');
 $dotenv->load();

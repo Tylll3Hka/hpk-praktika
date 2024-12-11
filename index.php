@@ -19,7 +19,7 @@ $products = $productsRepository->getAll();
 <form method="post" action="action/products/create.php">
     <input type="text" name="title" placeholder="Название">
     <input type="number" name="price" placeholder="Цена">
-    <button type="submit">Создать</button>
+    <button id="create" type="submit">Создать</button>
 </form>
 <table>
     <tr>
