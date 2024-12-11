@@ -17,8 +17,8 @@ $products = $productsRepository->getAll();
 <body>
 <a href="entrance.php">Поставки</a>
 <form method="post" action="action/products/create.php">
-    <input type="text" placeholder="Название">
-    <input type="number" placeholder="Цена">
+    <input type="text" name="title" placeholder="Название">
+    <input type="number" name="price" placeholder="Цена">
     <button type="submit">Создать</button>
 </form>
 <table>
@@ -26,6 +26,7 @@ $products = $productsRepository->getAll();
         <th>Артикул</th>
         <th>Название</th>
         <th>Цена</th>
+        <th>Количество</th>
         <th colspan="2">Действие</th>
     </tr>
     <?php foreach ($products as $item): ?>
@@ -33,6 +34,7 @@ $products = $productsRepository->getAll();
             <td><?= $item["id"] ?></td>
             <td><?= $item["title"] ?></td>
             <td><?= $item["price"] ?></td>
+            <td><?= $item["total_product"] ?></td>
             <td><a href="action/products/delete.php?id=<?= $item["id"] ?>">Удалить</a></td>
             <td><a href="update-product.php?id=<?= $item["id"] ?>">Изменить</a></td>
         </tr>

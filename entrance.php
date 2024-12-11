@@ -9,16 +9,25 @@
 </head>
 <?php
 use Src\EntranceRepository;
+use Src\ProductsRepository;
 require_once './vendor/autoload.php';
 
 $entranceRepository = new EntranceRepository();
 $entrance = $entranceRepository->getAll();
+$productsRepository = new ProductsRepository();
+$products = $productsRepository->getAll();
 ?>
 <body>
 <a href="index.php">Продукты</a>
 <form method="post" action="action/entrance/create.php">
-    <input type="text" placeholder="Продукт">
-    <input type="number" placeholder="Количество">
+    <input type="number" name="count" placeholder="Количество">
+    <label>
+        <select name="productId" style="min-width: 180px">
+            <?php foreach ($products as $item): ?>
+                <option value="<?= $item["id"] ?>"><?= $item["title"] ?></option>
+            <?php endforeach;?>
+        </select>
+    </label>
     <button type="submit">Создать</button>
 </form>
 <table>
@@ -33,7 +42,7 @@ $entrance = $entranceRepository->getAll();
             <td><?= $item["id"] ?></td>
             <td><?= $item["product_id"] ?></td>
             <td><?= $item["count"] ?></td>
-            <td><a href="action/products/delete.php?id=<?= $item["id"] ?>">Удалить</a></td>
+            <td><a href="action/entrance/delete.php?id=<?= $item["id"] ?>">Удалить</a></td>
         </tr>
     <?php endforeach; ?>
 </table>

@@ -5,9 +5,9 @@ require_once '../../vendor/autoload.php';
 
 $id = $_GET['id'];
 
-if (empty($_GET['id'])) header("Location: /products");
+if (empty($_GET['id'])) header("Location: /");
 
 $productsRepository = new ProductsRepository();
 $productsRepository->delete(intval($id));
 
-header("Location: /products");
+header("Location: /");

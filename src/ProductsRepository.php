@@ -19,16 +19,30 @@ class ProductsRepository
 
     public function getAll(): array
     {
-        return $this->pdo->query("SELECT * FROM product")->fetchAll(PDO::FETCH_ASSOC);
+        return $this->pdo->query("
+            SELECT p.*, sum(e.count) AS total_product FROM product AS p 
+            LEFT JOIN entrance e ON e.product_id = p.id
+            GROUP BY p.id
+        ")->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getOne(int $id): array
     {
-        return $this->pdo->query("SELECT * FROM products p WHERE p.id = $id")->fetch(PDO::FETCH_ASSOC);
+        return $this->pdo->query("SELECT * FROM product p WHERE p.id = $id")->fetch(PDO::FETCH_ASSOC);
     }
 
     public function delete(int $id): false|\PDOStatement
     {
-        return $this->pdo->query("DELETE FROM products WHERE id = $id");
+        return $this->pdo->query("DELETE FROM product WHERE id = $id");
+    }
+
+    public function create(mixed $title, mixed $price): bool|\PDOStatement
+    {
+        return $this->pdo->query("INSERT INTO product (title, price) VALUES ('$title', '$price')");
+    }
+
+    public function update(int $id, string $title, int $price): bool|\PDOStatement
+    {
+        return $this->pdo->query("UPDATE product SET title = '$title', price = '$price' WHERE id = $id");
     }
 }

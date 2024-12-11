@@ -30,4 +30,9 @@ class EntranceRepository
     {
         return $this->pdo->query("SELECT * FROM entrance WHERE id=$id")->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function create(int $count, int $productId): bool|\PDOStatement
+    {
+        return $this->pdo->query("INSERT INTO entrance (count, product_id) VALUES ('$count', $productId)");
+    }
 }

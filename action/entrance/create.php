@@ -1,16 +1,13 @@
 <?php
-
-use Src\ProductsRepository;
+use Src\EntranceRepository;
 require_once '../../vendor/autoload.php';
 
-$title = $_POST['title'];
-$price = $_POST['price'];
-$description = $_POST['description'];
-$category = $_POST['category'];
+$count = $_POST['count'];
+$productId = $_POST['productId'];
 
-if (empty(trim($title)) || empty(trim($price)) || empty(trim($description))) header("Location: /products");
+if (empty(trim($count))) header("Location: /entrance.php");
 
-$productRepository = new ProductsRepository();
-$productRepository->create($title, $description, $price, $category);
+$entranceRepository = new EntranceRepository();
+$entranceRepository->create($count, $productId);
 
-header("Location: /products");
+header("Location: /entrance.php");
